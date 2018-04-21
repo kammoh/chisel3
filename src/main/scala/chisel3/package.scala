@@ -12,7 +12,6 @@ package object chisel3 {    // scalastyle:ignore package.object.name
 
   import util.BitPat
 
-  import chisel3.util._
   import chisel3.internal.chiselRuntimeDeprecated
   import chisel3.internal.firrtl.Port
   import chisel3.core.CompileOptions

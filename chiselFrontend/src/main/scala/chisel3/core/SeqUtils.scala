@@ -20,7 +20,7 @@ private[chisel3] object SeqUtils {
 
   def do_asUInt[T <: Bits](in: Seq[T])(implicit sourceInfo: SourceInfo, compileOptions: CompileOptions): UInt = {
     if (in.tail.isEmpty) {
-      in.head.asUInt
+      in.head.asUInt()
     } else {
       val left = asUInt(in.slice(0, in.length/2))
       val right = asUInt(in.slice(in.length/2, in.length))
