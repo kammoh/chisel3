@@ -290,7 +290,7 @@ sealed abstract class Bits(width: Width, override val litArg: Option[LitArg])
     implicit val sourceInfo = DeprecatedSourceInfo
     do_asSInt
   }
-  
+
   @chiselRuntimeDeprecated
   @deprecated("Use asUInt, which makes the reinterpret cast more explicit", "chisel3")
   final def toUInt(implicit compileOptions: CompileOptions): UInt = {
