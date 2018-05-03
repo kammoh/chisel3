@@ -26,7 +26,7 @@ object unless {  // scalastyle:ignore object.name
   */
 class SwitchContext[T <: Bits](cond: T, whenContext: Option[WhenContext], lits: Set[BigInt]) {
   def is(v: Iterable[T])(block: => Unit): SwitchContext[T] = {
-    if (!v.isEmpty) {
+    if (v.nonEmpty) {
       val newLits = v.map { w =>
         require(w.isLit, "is conditions must be literals!")
         val value = w.litValue

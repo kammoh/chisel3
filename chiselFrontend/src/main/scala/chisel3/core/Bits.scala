@@ -6,8 +6,8 @@ import scala.language.experimental.macros
 import chisel3.internal.Builder.pushOp
 import chisel3.internal.firrtl.PrimOp._
 import chisel3.internal.firrtl._
-import chisel3.internal.sourceinfo.{DeprecatedSourceInfo, SourceInfo, SourceInfoTransform, SourceInfoWhiteboxTransform}
-import chisel3.internal.{Builder, chiselRuntimeDeprecated, throwException}
+import chisel3.internal.sourceinfo.{SourceInfo, SourceInfoTransform, SourceInfoWhiteboxTransform}
+import chisel3.internal.{Builder, throwException}
 
 
 /** Exists to unify common interfaces of [[Bits]] and [[Reset]]

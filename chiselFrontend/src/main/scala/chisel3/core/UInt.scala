@@ -3,7 +3,8 @@ package chisel3.core
 
 import chisel3.internal.Builder.pushOp
 import chisel3.internal.firrtl.PrimOp._
-import chisel3.internal.firrtl.{BinaryPoint, DefPrim, ILit, KnownBinaryPoint, KnownUIntRange, NumericBound, Range, ULit, Width}
+import chisel3.internal.firrtl.{BinaryPoint, DefPrim, ILit, KnownBinaryPoint, KnownUIntRange, NumericBound, Range,
+  ULit, Width}
 import chisel3.internal.sourceinfo.{SourceInfo, SourceInfoTransform, UIntTransform}
 import chisel3.internal.{chiselRuntimeDeprecated, throwException}
 

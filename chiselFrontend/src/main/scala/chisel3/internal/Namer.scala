@@ -7,7 +7,7 @@ package chisel3.internal.naming
 import scala.collection.mutable.Stack
 import scala.collection.mutable.ListBuffer
 
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 import java.util.IdentityHashMap
 
@@ -98,7 +98,7 @@ class NamingContext {
       }
     }
 
-    for (descendant <- descendants.values().flatten) {
+    for (descendant <- descendants.values().asScala.flatten) {
       // Where we have a broken naming link, just ignore the missing parts
       descendant.name_prefix(prefix)
     }

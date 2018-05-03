@@ -364,7 +364,7 @@ abstract class Data extends HasId with NamedComponent {
 
   final def := (that: Data)(implicit sourceInfo: SourceInfo, connectionCompileOptions: CompileOptions): Unit = this.connect(that)(sourceInfo, connectionCompileOptions)
   final def <> (that: Data)(implicit sourceInfo: SourceInfo, connectionCompileOptions: CompileOptions): Unit = this.bulkConnect(that)(sourceInfo, connectionCompileOptions)
-  def litArg(): Option[LitArg] = None
+  val litArg: Option[LitArg] = None
   def litValue(): BigInt = litArg.get.num
   def isLit(): Boolean = litArg.isDefined
 

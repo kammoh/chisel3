@@ -37,11 +37,11 @@ lazy val commonSettings = Seq (
   version := "3.2-SNAPSHOT",
   git.remoteRepo := "git@github.com:freechipsproject/chisel3.git",
   autoAPIMappings := true,
-  scalaVersion := "2.11.12",
-  crossScalaVersions := Seq("2.11.12", "2.12.4"),
+  scalaVersion := sys.props.getOrElse("scalaVersion", "2.12.6"),
+  crossScalaVersions := Seq(scalaVersion.value),
   scalacOptions := Seq("-deprecation", "-feature") ++ scalacOptionsVersion(scalaVersion.value),
   libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
   // Use the root project's unmanaged base for all sub-projects.
   unmanagedBase := (unmanagedBase in root).value,
   // Since we want to examine the classpath to determine if a dependency on firrtl is required,
@@ -52,7 +52,7 @@ lazy val commonSettings = Seq (
       // If we have an unmanaged jar file on the classpath, assume we're to use that,
       case dep: String if !(unmanagedClasspath in Compile).value.toString.contains(s"$dep.jar") =>
         //  otherwise let sbt fetch the appropriate version.
-        "edu.berkeley.cs" %% dep % sys.props.getOrElse(dep + "Version", defaultVersions(dep))
+        "edu.berkeley.cs" %% dep % sys.env.getOrElse(dep + "Version", defaultVersions(dep))
     }
   }
 )

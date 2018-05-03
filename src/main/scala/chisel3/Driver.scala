@@ -6,14 +6,10 @@ import chisel3.internal.firrtl.Emitter
 import chisel3.experimental.{RawModule, RunFirrtlTransform}
 
 import java.io._
-import net.jcazevedo.moultingyaml._
-
 import internal.firrtl._
 import firrtl._
-import firrtl.annotations.{Annotation, JsonProtocol}
+import firrtl.annotations.JsonProtocol
 import firrtl.util.{ BackendCompilationUtilities => FirrtlBackendCompilationUtilities }
-
-import _root_.firrtl.annotations.AnnotationYamlProtocol._
 
 /**
   * The Driver provides methods to invoke the chisel3 compiler and the firrtl compiler.
@@ -170,7 +166,7 @@ object Driver extends BackendCompilationUtilities {
                        .distinct
                        .filterNot(_ == classOf[firrtl.Transform])
                        .map { transformClass: Class[_ <: Transform] =>
-                         transformClass.newInstance()
+                         transformClass.getDeclaredConstructor().newInstance()
                        }
     /* This passes the firrtl source and annotations directly to firrtl */
     optionsManager.firrtlOptions = optionsManager.firrtlOptions.copy(
@@ -197,11 +193,10 @@ object Driver extends BackendCompilationUtilities {
   def execute(args: Array[String], dut: () => RawModule): ChiselExecutionResult = {
     val optionsManager = new ExecutionOptionsManager("chisel3") with HasChiselExecutionOptions with HasFirrtlOptions
 
-    optionsManager.parse(args) match {
-      case true =>
-        execute(optionsManager, dut)
-      case _ =>
-        ChiselExecutionFailure("could not parse results")
+    if (optionsManager.parse(args)){
+      execute(optionsManager, dut)
+    } else {
+      ChiselExecutionFailure("could not parse results")
     }
   }
 
@@ -213,7 +208,7 @@ object Driver extends BackendCompilationUtilities {
     * @param args unused args
     */
   def main(args: Array[String]) {
-    execute(Array("--help"), null)
+    execute(args, null)
   }
 
   val version = BuildInfo.version
