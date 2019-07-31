@@ -41,7 +41,7 @@ class Risc extends Module {
     pc := 0.U
   } .otherwise {
     switch(op) {
-      is(add_op) { rc := ra +% rb }
+      is(add_op) { rc := ra.asUInt +% rb.asUInt }
       is(imm_op) { rc := (rai << 8) | rbi }
     }
     io.out := rc
