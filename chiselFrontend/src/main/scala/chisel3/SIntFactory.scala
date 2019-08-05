@@ -5,7 +5,7 @@ import chisel3.internal.firrtl.{KnownSIntRange, NumericBound, Range, SLit, Width
 
 // scalastyle:off method.name
 
-trait SIntFactoryBase {
+trait SIntFactory {
   /** Create an SInt type with inferred width. */
   def apply(): SInt = apply(Width())
   /** Create a SInt type or port with fixed width. */

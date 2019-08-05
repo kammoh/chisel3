@@ -5,7 +5,7 @@ import chisel3.internal.firrtl.{ULit, Width}
 
 // scalastyle:off method.name
 
-trait BoolFactoryBase {
+trait BoolFactory {
   /** Creates an empty Bool.
    */
   def apply(): Bool = new Bool()

@@ -69,6 +69,33 @@ private[chisel3] trait NumBits[T <: Bits] {
    */
   override def >> (that: UInt): T = macro SourceInfoWhiteboxTransform.thatArg
 
+  /** Bitwise and operator
+   *
+   * @param that a hardware $coll
+   * @return the bitwise and of  this $coll and `that`
+   * $maxWidth
+   * @group Bitwise
+   */
+  def & (that: T): T = macro SourceInfoTransform.thatArg
+
+  /** Bitwise or operator
+   *
+   * @param that a hardware $coll
+   * @return the bitwise or of this $coll and `that`
+   * $maxWidth
+   * @group Bitwise
+   */
+  def | (that: T): T = macro SourceInfoTransform.thatArg
+
+  /** Bitwise exclusive or (xor) operator
+   *
+   * @param that a hardware $coll
+   * @return the bitwise xor of this $coll and `that`
+   * $maxWidth
+   * @group Bitwise
+   */
+  def ^ (that: T): T = macro SourceInfoTransform.thatArg
+  
 
   /** @group SourceInfoTransformMacro */
   def do_=/= (that: T)(implicit sourceInfo: SourceInfo, compileOptions: CompileOptions): Bool =
