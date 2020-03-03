@@ -122,7 +122,9 @@ lazy val chiselSettings = Seq (
   }
 )
 
-lazy val firrtl = (project in file("../firrtl"))
+lazy val firrtl = LocalProject("firrtl")
+//lazy val firrtl = (project in file("../firrtl"))
+//  .settings(publish / skip := true)
 
 lazy val coreMacros = (project in file("coreMacros")).
   settings(commonSettings: _*).
@@ -201,3 +203,4 @@ lazy val chisel = (project in file(".")).
     // published artifact) also see the stuff in coreMacros and chiselFrontend.
     exportJars := true
   )
+  .settings(publish / skip := true)
